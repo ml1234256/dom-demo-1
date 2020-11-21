@@ -110,7 +110,7 @@ window.dom = {
         return node.children;
     },
     siblings(node){
-        return Array.from(node.parentNode.children).filter(n => n! == node);
+        return Array.from(node.parentNode.children).filter(n => n !== node);
     },
     next(node){
         let x = node.nextSibling;
@@ -127,7 +127,7 @@ window.dom = {
         return x;
     },
     each(nodeList, fn){
-        for (let i=o; i < NodeList.length; i++) {
+        for (let i=0; i < nodeList.length; i++) {
             fn.call(null, nodeList[i]);
         }
     },
