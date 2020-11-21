@@ -79,7 +79,7 @@ dom.previous(node)
 // 遍历所有节点
 dom.each(nodes, fn)
 
-// 获取第几个元素
+// 返回当前node是第几个元素
 dom.index(node)
 ```
 

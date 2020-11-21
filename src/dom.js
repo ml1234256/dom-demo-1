@@ -82,8 +82,63 @@ window.dom = {
             }
         }
     },
+    class: {
+        add(node, className){
+            node.classList.add(className);
+        },
+        remove(node, className){
+            node.classList.remove(className);
+        },
+        has(node, className){
+            return node.classList.contains(className);
+        },
+    },
+    on(node, eventName, fn){
+        node.addEventListener(eventName, fn);
+    },
+    off(node, eventName, fn){
+        node.removeEventListener(eventName, fn);
+    },
     //查
     find(selector, scope){
         return (scope || document).querySelectorAll(selector);
     },
+    parent(node){
+        return node.parentNode;
+    },
+    children(node){
+        return node.children;
+    },
+    siblings(node){
+        return Array.from(node.parentNode.children).filter(n => n! == node);
+    },
+    next(node){
+        let x = node.nextSibling;
+        while (x && x.nodeType === 3) {
+            x = x.nextSibling;
+        }
+        return x;
+    },
+    previous(node){
+        let x = node.previousSibling;
+        while (x && x.nodeType === 3) {
+            x = x.nextSibling;
+        }
+        return x;
+    },
+    each(nodeList, fn){
+        for (let i=o; i < NodeList.length; i++) {
+            fn.call(null, nodeList[i]);
+        }
+    },
+    index(node){
+        const list = dom.children(node.parentNode)
+        let i;
+        for (i=0; i < list.length; i++) {
+            if(list[i] === node){
+                break;
+            }
+        }
+        return i;
+    }
 }
